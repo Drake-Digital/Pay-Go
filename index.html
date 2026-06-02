@@ -191,6 +191,71 @@
 
     svg { stroke-linecap: round; stroke-linejoin: round; }
 
+
+    /* Correctifs mobile : centrage, lisibilité et bouton fixe moins intrusif */
+    @media (max-width: 719px) {
+      .container { width: min(100% - 32px, 430px); }
+      .nav-inner { min-height: 66px; }
+      .brand-mark { width: 38px; height: 38px; border-radius: 14px; }
+      .brand-mark img { width: 28px; height: 28px; }
+      .brand-text { font-size: 1.08rem; }
+      .menu-btn { width: 46px; height: 46px; }
+
+      .hero { padding: 32px 0 28px; }
+      .eyebrow { max-width: 100%; justify-content: center; text-align: center; line-height: 1.25; }
+      h1 { font-size: clamp(2.72rem, 11.2vw, 3.85rem); line-height: .98; letter-spacing: -.07em; text-align: left; }
+      .hero-copy { font-size: 1.03rem; line-height: 1.55; max-width: 34rem; }
+      .hero-actions { gap: 10px; }
+      .hero-actions .btn { min-height: 56px; }
+      .quick-tags { justify-content: center; margin-top: 18px; }
+      .tag { font-size: .86rem; padding: 8px 10px; }
+      .hero-visual { margin-top: 6px; }
+
+      .steps-wrap { border-radius: 26px; padding: 30px 18px 34px; }
+      .steps-wrap .center { text-align: center; }
+      .steps-wrap .section-title { text-align: center; font-size: clamp(2rem, 8.5vw, 2.55rem); line-height: 1.08; }
+      .steps-wrap .section-lead { max-width: 20rem; font-size: .96rem; line-height: 1.5; }
+      .flow-grid { gap: 14px; margin-top: 24px; }
+      .flow-step {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        padding: 22px 20px;
+        min-height: auto;
+        gap: 8px;
+      }
+      .flow-icon { width: 54px; height: 54px; border-radius: 19px; margin: 0 auto 4px; }
+      .flow-step h3 { width: 100%; text-align: center; font-size: 1.18rem; line-height: 1.22; }
+      .flow-step p { width: 100%; max-width: 260px; margin: 2px auto 0; text-align: center; font-size: .96rem; line-height: 1.48; color: #C7D5E8; }
+
+      .proof-item { align-items: center; }
+      .proof-item b, .proof-item span { text-align: left; }
+      .recharge-card { text-align: center; padding: 24px 20px; }
+      .recharge-icon { margin-left: auto; margin-right: auto; }
+      .recharge-card h3 { text-align: center; }
+      .recharge-card p { max-width: 290px; margin-left: auto; margin-right: auto; }
+      .tiny-label { justify-content: center; text-align: center; }
+
+      .cash-panel { border-radius: 28px; padding: 30px 18px 34px; }
+      .cash-copy { text-align: center; }
+      .cash-copy h2 { font-size: clamp(2.15rem, 9vw, 2.75rem); }
+      .cash-copy p { max-width: 310px; margin-left: auto; margin-right: auto; }
+      .check-list { max-width: 320px; margin-left: auto; margin-right: auto; }
+      .check-list li { text-align: left; }
+      .note { text-align: center; }
+
+      .mini-card { text-align: center; }
+      .mini-top { justify-content: center; }
+      .form-shell { padding: 20px 16px; border-radius: 28px; }
+      .form-intro { text-align: center; }
+      .form-intro p { max-width: 310px; margin-left: auto; margin-right: auto; }
+      .trust-line { justify-content: center; text-align: center; }
+      .field label { text-align: left; }
+      footer { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+      .sticky-cta { left: 18px; right: 18px; bottom: calc(10px + env(safe-area-inset-bottom)); }
+      .sticky-cta .btn { min-height: 52px; font-size: 1rem; }
+    }
+
     @media (min-width: 720px) {
       .hero-actions { display: flex; }
       .hero-actions .btn { width: auto; }
@@ -301,23 +366,23 @@
           <div class="center">
             <div class="eyebrow">Simple à comprendre</div>
             <h2 class="section-title">Comment ça marche ?</h2>
-            <p class="section-lead">Un parcours clair : vous rechargez, votre argent est sécurisé, puis vous l'utilisez avec l'app et la carte.</p>
+            <p class="section-lead">Un parcours clair : rechargez, sécurisez, puis utilisez votre argent avec l’app et la carte.</p>
           </div>
           <div class="flow-grid">
             <article class="flow-step">
               <div class="flow-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg></div>
               <h3>1. Rechargez</h3>
-              <p>Carte bancaire, virement ou USDT / USDC.</p>
+              <p>Carte, virement ou USDT / USDC.</p>
             </article>
             <article class="flow-step">
               <div class="flow-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-5"/></svg></div>
               <h3>2. Sécurisez</h3>
-              <p>Vos fonds passent par un cadre fiable.</p>
+              <p>Vos fonds restent dans un cadre fiable.</p>
             </article>
             <article class="flow-step">
               <div class="flow-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
               <h3>3. Pilotez</h3>
-              <p>Suivez votre solde depuis l'application.</p>
+              <p>Pilotez votre solde depuis l’app.</p>
             </article>
             <article class="flow-step">
               <div class="flow-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 14h3M15 14h3"/></svg></div>
