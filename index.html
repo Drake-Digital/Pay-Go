@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Argent Sans Frontières | Drake Digital</title>
+    <style>
+        :root {
+            --bg-light: #F8FAFC;
+            --bg-white: #FFFFFF;
+            --primary-navy: #0B1736;
+            --primary-blue: #2563EB;
+            --accent-cyan: #00E5FF;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-family); }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* Navbar */
+        header { 
+            padding: 20px 10%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo img { height: 50px; }
+
+        /* Hero Section */
+        .hero { 
+            padding: 100px 10%; 
+            text-align: center; 
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+        }
+        .hero .badge { 
+            display: inline-block; 
+            background: rgba(37, 99, 235, 0.1); 
+            color: var(--primary-blue); 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 0.9rem; 
+            font-weight: 600;
+            margin-bottom: 24px; 
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; color: var(--primary-navy); letter-spacing: -1px; }
+        .hero h1 span { color: var(--primary-blue); }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 40px auto; }
+        
+        .btn-primary { 
+            padding: 16px 40px; 
+            background-color: var(--primary-blue); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            display: inline-block;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+        .btn-primary:hover { background-color: var(--primary-navy); transform: translateY(-2px); }
+
+        /* Schema Section */
+        .schema-section { padding: 80px 10%; background-color: var(--bg-white); text-align: center; }
+        .schema-section h2 { font-size: 2.2rem; color: var(--primary-navy); margin-bottom: 20px; }
+        .schema-section p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto 50px auto; }
+        .schema-img { max-width: 100%; height: auto; border-radius: 20px; box-shadow: var(--shadow-lg); }
+
+        /* Gateways (Features) */
+        .gateways { padding: 80px 10%; }
+        .gateways h2 { font-size: 2.2rem; text-align: center; color: var(--primary-navy); margin-bottom: 50px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        .card { 
+            background-color: var(--bg-white); 
+            padding: 50px; 
+            border-radius: 20px; 
+            box-shadow: var(--shadow-sm); 
+            transition: all 0.3s ease;
+            border: 1px solid #E2E8F0;
+        }
+        .card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-blue); }
+        .card h3 { color: var(--primary-navy); font-size: 1.5rem; margin-bottom: 15px; }
+        .card.premium { border-top: 4px solid var(--primary-blue); background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); }
+
+        /* Visual Showcase */
+        .showcase { padding: 80px 10%; background-color: var(--primary-navy); color: white; display: flex; align-items: center; gap: 60px; }
+        .showcase-text { flex: 1; }
+        .showcase-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .showcase-text ul { list-style: none; margin-top: 30px; }
+        .showcase-text ul li { margin-bottom: 20px; padding-left: 35px; position: relative; font-size: 1.1rem; color: #CBD5E1;}
+        .showcase-text ul li::before { content: '✓'; color: var(--accent-cyan); position: absolute; left: 0; font-weight: bold; font-size: 1.4rem; }
+        .showcase-images { flex: 1; position: relative; display: flex; gap: 20px; justify-content: center; }
+        .showcase-images img { max-width: 250px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .img-offset { margin-top: 50px; }
+
+        /* Masterclass Section */
+        .masterclass { padding: 80px 10%; background-color: var(--bg-white); text-align: center; }
+        .masterclass h2 { font-size: 2.2rem; color: var(--primary-navy); margin-bottom: 20px; }
+        .masterclass p.subtitle { color: var(--primary-blue); font-size: 1.2rem; font-weight: 600; margin-bottom: 30px;}
+        .masterclass p.desc { color: var(--text-muted); max-width: 800px; margin: 0 auto; font-size: 1.1rem; }
+
+        /* Form Section */
+        .subscription { padding: 80px 10%; display: flex; justify-content: center; background-color: var(--bg-light); }
+        .form-container { background-color: var(--bg-white); padding: 50px; border-radius: 24px; width: 100%; max-width: 600px; box-shadow: var(--shadow-lg); border: 1px solid #E2E8F0; }
+        .form-container h2 { text-align: center; margin-bottom: 30px; color: var(--primary-navy); }
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.95rem; font-weight: 500; color: var(--text-dark); }
+        .form-group input { width: 100%; padding: 14px 16px; background-color: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; color: var(--text-dark); font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input:focus { outline: none; border-color: var(--primary-blue); background-color: #fff; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        
+        footer { text-align: center; padding: 40px 10%; background-color: var(--bg-white); color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid #E2E8F0; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .showcase { flex-direction: column; text-align: center; }
+            .showcase-text ul li { text-align: left; }
+            .showcase-images { flex-direction: column; align-items: center; }
+            .img-offset { margin-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="Background 2.png" alt="Drake Digital Logo">
+        </a>
+    </header>
+
+    <section class="hero">
+        <div class="badge">Le Nouveau Paradigme des Paiements</div>
+        <h1>Votre Argent, Partout, <span>Sans Limites</span></h1>
+        <p>Libérez-vous des lenteurs bancaires et des plafonds bloquants. Découvrez un compte global et une carte Mastercard qui vous redonnent le contrôle total sur vos finances, en toute discrétion.</p>
+        <a href="#inscription" class="btn-primary">Découvrir la solution & S'inscrire</a>
+    </section>
+
+    <section class="schema-section">
+        <h2>Comment ça marche ? C'est très simple.</h2>
+        <p>Nous avons créé un pont invisible entre les banques classiques et les nouvelles technologies numériques. Vous déposez vos fonds, nous les sécurisons instantanément, et vous les dépensez librement avec votre carte.</p>
+        <img src="Unblock img 1.jpg" alt="Schéma simplifié du parcours de vos fonds : de la banque à votre carte" class="schema-img">
+    </section>
+
+    <section class="gateways">
+        <h2>Deux façons d'alimenter votre compte</h2>
+        <div class="grid-2">
+            <!-- Option Classique -->
+            <div class="card">
+                <h3>1. Le Rechargement Classique</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-weight: 500;">Pour contourner les lenteurs locales (Idéal Afrique/Europe).</p>
+                <p>Rechargez votre compte avec votre carte bancaire locale ou par un simple virement. Vos fonds sont immédiatement convertis en dollars ou en francs suisses sur notre application.</p>
+                <p style="margin-top: 15px; font-size: 0.95rem; color: var(--text-dark);"><strong>Pourquoi c'est génial ?</strong> Vous n'avez plus besoin de justifier chaque facture à votre banque locale pour payer vos fournisseurs étrangers. L'argent voyage instantanément.</p>
+            </div>
+
+            <!-- Option Crypto / Discrétion -->
+            <div class="card premium">
+                <h3>2. Le Dépôt Numérique (Crypto)</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-weight: 500;">Pour une discrétion absolue (Idéal Suisse/Europe).</p>
+                <p>Vous avez déjà des cryptomonnaies sur des plateformes comme Binance ou Kraken ? Envoyez-les directement sur notre application. Elles alimentent votre carte bancaire en temps réel, prêtes à être dépensées.</p>
+                <p style="margin-top: 15px; font-size: 0.95rem; color: var(--text-dark);"><strong>Pourquoi c'est unique ?</strong> Vos fonds restent dans le monde numérique jusqu'à la seconde où vous payez. Vous profitez de vos gains directement, sans repasser par les lourdeurs du système bancaire traditionnel.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <div class="showcase-text">
+            <h2>Une seule app.<br>Une liberté mondiale.</h2>
+            <p style="font-size: 1.2rem; color: #94A3B8; margin-bottom: 20px;">Fini les blocages aux frontières. Votre téléphone devient votre banque personnelle.</p>
+            <ul>
+                <li><strong>Comptes en Devises Fortes :</strong> Protégez votre argent en Dollars (USD) ou en Francs Suisses (CHF) directement sur l'application.</li>
+                <li><strong>La Carte Mastercard :</strong> Une vraie carte internationale pour régler vos fournisseurs, payer en ligne, ou voyager.</li>
+                <li><strong>Du Cash Partout :</strong> Retirez de l'argent dans n'importe quel distributeur automatique (ATM) dans le monde.</li>
+                <li><strong>Sécurité Européenne :</strong> Bien que la technologie soit moderne, vos fonds sont audités et sécurisés selon les normes européennes les plus strictes.</li>
+            </ul>
+        </div>
+        <div class="showcase-images">
+            <img src="image3 app unblock.jpg" alt="L'application sur smartphone">
+            <img src="Unblock img 2.jpg" alt="La carte Mastercard Premium" class="img-offset">
+        </div>
+    </section>
+
+    <section class="masterclass">
+        <h2>La Masterclass : Comprendre sans jargon</h2>
+        <p class="subtitle">Session "La Nouvelle Économie, expliquée simplement"</p>
+        <p class="desc">
+            Vous entendez parler de "monnaies numériques" ou de "blockchain" mais cela vous semble complexe ? Rassurez-vous, <strong>cette formation est pensée pour être claire et accessible à tous</strong>. En moins d'une heure, vous comprendrez comment fonctionne l'argent de demain, pourquoi il est ultra-sécurisé, et comment il peut simplifier vos affaires au quotidien.
+        </p>
+    </section>
+
+    <section class="subscription" id="inscription">
+        <div class="form-container">
+            <h2>Accéder au webinaire & Ouvrir un compte</h2>
+            <form id="erpnext-form" action="/api/method/frappe.client.insert" method="POST">
+                <input type="hidden" name="doctype" value="Lead">
+                
+                <div class="form-group">
+                    <label>Prénom</label>
+                    <input type="text" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Pays de Résidence</label>
+                    <input type="text" name="country" placeholder="Ex: Suisse, Côte d'Ivoire, France..." required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email_id" required>
+                </div>
+                <div class="form-group">
+                    <label>Code Partenaire (Optionnel)</label>
+                    <input type="text" name="custom_promo_code" placeholder="Si quelqu'un vous a recommandé, notez son code ici">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px; font-size: 1.2rem; padding: 18px;">Valider mon inscription</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Drake Digital. Tous droits réservés.</p>
+        <p style="margin-top: 10px;">Nous vous accompagnons de A à Z pour une intégration 100% personnalisée, dans le respect des normes de sécurité.</p>
+    </footer>
+
+
+    <script>
+        // Envoi simple via WhatsApp : le formulaire ouvre WhatsApp avec le message prérempli.
+        // L'utilisateur devra valider l'envoi dans WhatsApp.
+        (function () {
+            const form = document.getElementById('erpnext-form');
+            if (!form) return;
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (typeof form.reportValidity === 'function' && !form.reportValidity()) {
+                    return;
+                }
+
+                const formData = new FormData(form);
+                const firstName = String(formData.get('first_name') || '').trim();
+                const lastName = String(formData.get('last_name') || '').trim();
+                const country = String(formData.get('country') || '').trim();
+                const email = String(formData.get('email_id') || '').trim();
+                const promoCode = String(formData.get('custom_promo_code') || '').trim();
+
+                const message = [
+                    'Nouvelle inscription Pay-Go / Webinaire Drake Digital',
+                    '',
+                    'Prénom : ' + firstName,
+                    'Nom : ' + lastName,
+                    'Pays de résidence : ' + country,
+                    'Email : ' + email,
+                    'Code partenaire : ' + (promoCode || 'Non renseigné'),
+                    '',
+                    'Source : https://drake-digital.github.io/Pay-Go/'
+                ].join('\n');
+
+                const whatsappNumber = '41792291547';
+                const whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
+                window.location.href = whatsappUrl;
+            });
+        })();
+    </script>
+
+</body>
+</html>
