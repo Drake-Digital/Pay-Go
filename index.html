@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Drake Digital : une page simple pour découvrir une approche moderne des paiements internationaux, avec recharge par carte bancaire, virement ou stablecoins, et carte internationale.">
+    <meta property="og:title" content="Votre Argent, Partout, Sans Limites | Drake Digital">
+    <meta property="og:description" content="Rechargez simplement, payez à l’international et accédez à votre cash partout.">
+    <meta property="og:image" content="assets/og-paygo.jpg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#F7FAFC">
+    <title>Votre Argent Sans Limites | Drake Digital</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="preload" as="image" href="assets/hero-payments-mobile.webp" imagesrcset="assets/hero-payments-mobile.webp 900w, assets/hero-payments.webp 1536w" imagesizes="(max-width: 760px) 92vw, 48vw">
+    <style>
+        :root {
+            --bg: #F7FAFC;
+            --surface: #FFFFFF;
+            --surface-soft: #F2F7FC;
+            --ink: #071327;
+            --muted: #5D6A7C;
+            --muted-2: #7B8797;
+            --line: #DCE7F2;
+            --line-strong: #C6DAEF;
+            --blue: #155EEF;
+            --blue-2: #007AFF;
+            --cyan: #00BFEA;
+            --navy: #07152C;
+            --green: #0E9F6E;
+            --radius-xl: 34px;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --shadow: 0 28px 70px rgba(15, 39, 76, .11);
+            --shadow-soft: 0 14px 42px rgba(15, 39, 76, .08);
+            --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--font);
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 14% 4%, rgba(0, 191, 234, .16), transparent 28rem),
+                radial-gradient(circle at 92% 10%, rgba(21, 94, 239, .12), transparent 28rem),
+                linear-gradient(180deg, #FFFFFF 0%, var(--bg) 42%, #FFFFFF 100%);
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+        button, input, select { font: inherit; }
+        .container { width: min(1120px, calc(100% - 34px)); margin: 0 auto; }
+        .section { padding: clamp(58px, 8vw, 96px) 0; }
+        .center { text-align: center; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            padding: 8px 12px;
+            border: 1px solid rgba(21, 94, 239, .12);
+            border-radius: 999px;
+            background: rgba(21, 94, 239, .06);
+            color: #114AB8;
+            font-size: .82rem;
+            font-weight: 850;
+        }
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 18px rgba(0, 191, 234, .72);
+        }
+        .section-title {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3.85rem);
+            line-height: 1.03;
+            letter-spacing: -.055em;
+        }
+        .section-kicker {
+            margin: 16px auto 0;
+            max-width: 690px;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.14rem);
+            line-height: 1.7;
+        }
+        .blue { color: var(--blue); }
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            background: rgba(255,255,255,.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(220,231,242,.82);
+        }
+        .nav-inner {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+        .brand { display: flex; align-items: center; text-decoration: none; min-width: 0; }
+        .brand img { width: 155px; height: auto; max-height: 46px; object-fit: contain; }
+        .nav-links { display: none; align-items: center; gap: 24px; color: var(--muted); font-size: .94rem; font-weight: 700; }
+        .nav-links a { text-decoration: none; }
+        .nav-links a:hover { color: var(--ink); }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 50px;
+            padding: 0 20px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            font-weight: 850;
+            letter-spacing: -.02em;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-primary {
+            color: #fff;
+            background: #071327;
+            box-shadow: 0 16px 38px rgba(7, 19, 39, .18);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 50px rgba(7, 19, 39, .22); }
+        .btn-secondary {
+            color: var(--ink);
+            background: #fff;
+            border-color: var(--line);
+            box-shadow: 0 10px 30px rgba(15,39,76,.06);
+        }
+        .btn-small { min-height: 42px; padding: 0 16px; font-size: .9rem; }
+
+        .hero { padding: 38px 0 46px; }
+        .hero-grid { display: grid; gap: 34px; align-items: center; }
+        h1 {
+            margin: 18px 0 0;
+            max-width: 780px;
+            font-size: clamp(3.1rem, 13vw, 6rem);
+            line-height: .9;
+            letter-spacing: -.078em;
+        }
+        .hero-copy {
+            margin: 22px 0 0;
+            max-width: 650px;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2.6vw, 1.22rem);
+            line-height: 1.72;
+        }
+        .hero-actions { display: grid; gap: 12px; margin-top: 28px; }
+        .hero-actions .btn { width: 100%; }
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 13px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.82);
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: .92rem;
+            font-weight: 720;
+            box-shadow: 0 10px 28px rgba(15,39,76,.05);
+        }
+        .pill b { color: var(--ink); }
+        .hero-visual {
+            border-radius: var(--radius-xl);
+            padding: 8px;
+            background: linear-gradient(145deg, #fff, #EAF4FF);
+            border: 1px solid rgba(198,218,239,.75);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .hero-visual picture, .hero-visual img { width: 100%; }
+        .hero-visual img { border-radius: 27px; object-fit: cover; box-shadow: 0 18px 46px rgba(7, 21, 44, .21); }
+
+        .trust-strip {
+            margin-top: 28px;
+            display: grid;
+            gap: 10px;
+        }
+        .trust-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.72);
+            border-radius: 18px;
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.45;
+        }
+        .dot-check {
+            flex: 0 0 auto;
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #E8F7EF;
+            color: var(--green);
+            font-weight: 900;
+        }
+        .trust-item strong { color: var(--ink); }
+
+        .recharge-wrap {
+            border-radius: var(--radius-xl);
+            background: rgba(255,255,255,.74);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-soft);
+            padding: clamp(18px, 4vw, 34px);
+        }
+        .recharge-grid { display: grid; gap: 14px; margin-top: 28px; }
+        .recharge-card {
+            position: relative;
+            overflow: hidden;
+            padding: 22px;
+            min-height: 185px;
+            border-radius: 26px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: 0 10px 34px rgba(15,39,76,.055);
+        }
+        .recharge-card::after {
+            content: "";
+            position: absolute;
+            right: -24px; top: -34px;
+            width: 110px; height: 110px;
+            border-radius: 999px;
+            background: rgba(21, 94, 239, .07);
+        }
+        .icon-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            color: var(--blue);
+            background: #EEF6FF;
+            border: 1px solid #D7E9FF;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+        }
+        .icon-box svg { width: 29px; height: 29px; }
+        .recharge-card h3 {
+            margin: 18px 0 8px;
+            font-size: 1.32rem;
+            line-height: 1.08;
+            letter-spacing: -.03em;
+        }
+        .recharge-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .tag {
+            padding: 7px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: #F7FBFF;
+            color: #33506F;
+            font-size: .82rem;
+            font-weight: 800;
+        }
+
+        .flow { display: grid; gap: 12px; margin-top: 30px; }
+        .flow-step {
+            position: relative;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 18px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: 0 10px 28px rgba(15,39,76,.055);
+        }
+        .step-number {
+            flex: 0 0 auto;
+            width: 36px;
+            height: 36px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            background: var(--ink);
+            font-weight: 900;
+        }
+        .flow-step h3 { margin: 0; font-size: 1.08rem; letter-spacing: -.02em; }
+        .flow-step p { margin: 5px 0 0; color: var(--muted); line-height: 1.5; }
+
+        .card-section {
+            background: linear-gradient(180deg, #071327 0%, #0A1B35 100%);
+            color: #fff;
+            border-radius: 36px;
+            margin: 24px auto;
+            width: min(1188px, calc(100% - 20px));
+            overflow: hidden;
+        }
+        .card-grid { display: grid; gap: 32px; align-items: center; }
+        .card-section .section-title { color: #fff; }
+        .card-section .section-kicker { color: #B7C5D8; margin-left: 0; }
+        .benefits { display: grid; gap: 12px; margin: 24px 0 0; }
+        .benefit {
+            display: flex;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 18px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            color: #DCE7F2;
+            line-height: 1.52;
+        }
+        .benefit strong { color: #fff; }
+        .change-note {
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: 20px;
+            background: rgba(0,191,234,.10);
+            border: 1px solid rgba(0,191,234,.22);
+            color: #D7F7FF;
+            line-height: 1.55;
+        }
+        .mini-card-visual {
+            border-radius: 30px;
+            padding: 8px;
+            background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
+            border: 1px solid rgba(255,255,255,.16);
+            box-shadow: 0 20px 60px rgba(0,0,0,.24);
+        }
+        .mini-card-visual img { border-radius: 24px; width: 100%; object-fit: cover; }
+
+        .masterclass-card {
+            border-radius: var(--radius-xl);
+            background: #fff;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-soft);
+            padding: clamp(24px, 5vw, 42px);
+            display: grid;
+            gap: 24px;
+            align-items: center;
+        }
+        .simple-list { display: grid; gap: 10px; margin-top: 20px; }
+        .simple-list div { display: flex; gap: 10px; color: var(--muted); line-height: 1.48; }
+
+        .form-card {
+            max-width: 760px;
+            margin: 0 auto;
+            border-radius: var(--radius-xl);
+            background: #fff;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            padding: clamp(22px, 5vw, 40px);
+        }
+        .form-grid { display: grid; gap: 14px; margin-top: 26px; }
+        .field { display: grid; gap: 7px; }
+        label { color: var(--ink); font-size: .92rem; font-weight: 820; }
+        input, select {
+            width: 100%;
+            min-height: 52px;
+            padding: 0 15px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: #F8FBFE;
+            color: var(--ink);
+            outline: none;
+            transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+        input:focus, select:focus { border-color: #9AC8F8; background: #fff; box-shadow: 0 0 0 4px rgba(21,94,239,.10); }
+        .form-note { margin: 13px 0 0; color: var(--muted-2); font-size: .9rem; line-height: 1.5; }
+        .form-card .btn { width: 100%; margin-top: 18px; }
+        .privacy { margin: 14px 0 0; text-align: center; color: var(--muted-2); font-size: .86rem; line-height: 1.45; }
+        .success-box { display: none; margin-top: 16px; padding: 14px; border-radius: 18px; background: #ECFDF3; color: #067647; border: 1px solid #BCEED1; line-height: 1.5; }
+        footer { padding: 34px 0 92px; color: var(--muted); text-align: center; font-size: .92rem; }
+        footer strong { color: var(--ink); }
+        .mobile-sticky {
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            z-index: 45;
+            padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+            background: rgba(255,255,255,.86);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-top: 1px solid var(--line);
+        }
+        .mobile-sticky .btn { width: 100%; }
+
+        @media (min-width: 680px) {
+            .hero-actions { display: flex; }
+            .hero-actions .btn { width: auto; }
+            .trust-strip { grid-template-columns: repeat(3, 1fr); }
+            .recharge-grid { grid-template-columns: repeat(3, 1fr); }
+            .form-grid { grid-template-columns: repeat(2, 1fr); }
+            .field-full { grid-column: 1 / -1; }
+        }
+        @media (min-width: 900px) {
+            .nav-links { display: flex; }
+            .hero { padding: 68px 0 64px; }
+            .hero-grid { grid-template-columns: .96fr 1.04fr; gap: 58px; }
+            .card-grid { grid-template-columns: .88fr 1.12fr; }
+            .flow { grid-template-columns: repeat(4, 1fr); }
+            .flow-step { display: block; padding: 22px; min-height: 192px; }
+            .flow-step:not(:last-child)::after {
+                content: "→";
+                position: absolute;
+                right: -23px;
+                top: 42%;
+                color: var(--blue);
+                font-size: 2rem;
+                font-weight: 900;
+                z-index: 2;
+            }
+            .step-number { margin-bottom: 18px; }
+            .masterclass-card { grid-template-columns: .86fr 1.14fr; }
+            .mobile-sticky { display: none; }
+            footer { padding-bottom: 38px; }
+        }
+        @media (max-width: 560px) {
+            .brand img { width: 132px; }
+            .nav-inner { height: 66px; }
+            .btn-small { min-height: 40px; padding: 0 13px; font-size: .84rem; }
+            .container { width: min(100% - 26px, 1120px); }
+            h1 { font-size: clamp(3.15rem, 15vw, 4.5rem); }
+            .section { padding: 54px 0; }
+            .hero { padding-top: 30px; }
+            .hero-visual { border-radius: 26px; padding: 6px; }
+            .hero-visual img { border-radius: 20px; }
+            .recharge-wrap, .form-card, .masterclass-card { border-radius: 26px; }
+            .card-section { border-radius: 28px; width: min(100% - 10px, 1188px); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" aria-label="Navigation principale">
+        <div class="container nav-inner">
+            <a class="brand" href="#top" aria-label="Drake Digital">
+                <img src="assets/logo-drake.png" alt="Drake Digital">
+            </a>
+            <div class="nav-links" aria-hidden="true">
+                <a href="#recharger">Recharger</a>
+                <a href="#fonctionnement">Fonctionnement</a>
+                <a href="#carte">Carte</a>
+                <a href="#inscription">Inscription</a>
+            </div>
+            <a class="btn btn-primary btn-small" href="#inscription">Réserver ma place</a>
+        </div>
+    </nav>
+
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <div class="eyebrow">Paiements internationaux simplifiés</div>
+                    <h1>Votre Argent,<br>Partout, <span class="blue">Sans Limites</span></h1>
+                    <p class="hero-copy">Libérez-vous des lenteurs bancaires et des plafonds bloquants. Découvrez une approche simple pour reprendre le contrôle de vos paiements internationaux, en toute discrétion.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#inscription">Accéder au webinaire</a>
+                        <a class="btn btn-secondary" href="#fonctionnement">Voir comment ça marche</a>
+                    </div>
+                    <div class="hero-pills" aria-label="Résumé de la solution">
+                        <span class="pill"><b>Carte</b> internationale</span>
+                        <span class="pill"><b>Cash</b> disponible partout</span>
+                        <span class="pill"><b>Compte</b> en CHF ou USD</span>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-label="Application mobile et carte internationale">
+                    <picture>
+                        <source media="(max-width: 760px)" srcset="assets/hero-payments-mobile.webp">
+                        <img src="assets/hero-payments.webp" alt="Application mobile, carte internationale et paiements dans plusieurs devises" width="1536" height="1024">
+                    </picture>
+                </div>
+            </div>
+            <div class="container trust-strip">
+                <div class="trust-item"><span class="dot-check">✓</span><span><strong>Simple</strong><br>Une seule application pour piloter vos paiements.</span></div>
+                <div class="trust-item"><span class="dot-check">✓</span><span><strong>International</strong><br>Payez vos fournisseurs et retirez du cash en voyage.</span></div>
+                <div class="trust-item"><span class="dot-check">✓</span><span><strong>Accompagné</strong><br>On vous explique tout sans jargon technique.</span></div>
+            </div>
+        </section>
+
+        <section class="section" id="recharger">
+            <div class="container recharge-wrap">
+                <div class="center">
+                    <div class="eyebrow">Trois façons de recharger</div>
+                    <h2 class="section-title">Alimentez votre compte comme vous le faites déjà.</h2>
+                    <p class="section-kicker">Carte bancaire, virement ou crypto stable : le principe reste simple. Vous rechargez, puis vous utilisez votre carte pour payer et retirer à l’international.</p>
+                </div>
+                <div class="recharge-grid">
+                    <article class="recharge-card">
+                        <div class="icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.8"/><path d="M7 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        </div>
+                        <h3>Carte bancaire</h3>
+                        <p>Rechargez depuis votre carte dans votre devise habituelle, par exemple EUR, FCFA/XAF, CHF ou autre devise acceptée.</p>
+                        <div class="tag-row"><span class="tag">EUR</span><span class="tag">FCFA</span><span class="tag">Autres devises</span></div>
+                    </article>
+                    <article class="recharge-card">
+                        <div class="icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M5 18h14M3 21h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 3l8 5H4l8-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h3>Virement bancaire</h3>
+                        <p>Alimentez votre compte par un virement classique, quand c’est plus pratique pour votre trésorerie ou votre entreprise.</p>
+                        <div class="tag-row"><span class="tag">Pro</span><span class="tag">Entreprise</span><span class="tag">Trésorerie</span></div>
+                    </article>
+                    <article class="recharge-card">
+                        <div class="icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12h7M12 8.5v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18.5 5.5l1.8-1.8M3.7 20.3l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        </div>
+                        <h3>Crypto stable</h3>
+                        <p>Pour ceux qui en utilisent déjà, le compte peut aussi être rechargé avec des stablecoins comme USDT ou USDC.</p>
+                        <div class="tag-row"><span class="tag">USDT</span><span class="tag">USDC</span></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="fonctionnement">
+            <div class="container center">
+                <div class="eyebrow">Comment ça marche</div>
+                <h2 class="section-title">Un parcours volontairement simple.</h2>
+                <p class="section-kicker">Pas besoin d’être spécialiste. Vous rechargez, vous choisissez votre devise de compte, puis vous payez ou retirez avec votre carte.</p>
+                <div class="flow" aria-label="Parcours simplifié">
+                    <article class="flow-step"><div class="step-number">1</div><h3>Rechargez</h3><p>Par carte bancaire, virement ou USDT/USDC.</p></article>
+                    <article class="flow-step"><div class="step-number">2</div><h3>Choisissez</h3><p>Votre compte peut être en CHF ou en USD.</p></article>
+                    <article class="flow-step"><div class="step-number">3</div><h3>Payez</h3><p>Utilisez la carte pour régler vos achats et fournisseurs.</p></article>
+                    <article class="flow-step"><div class="step-number">4</div><h3>Retirez</h3><p>Accédez à votre cash via les distributeurs compatibles.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section card-section" id="carte">
+            <div class="container card-grid">
+                <div>
+                    <div class="eyebrow">Carte internationale</div>
+                    <h2 class="section-title">Payez partout. Retirez partout.</h2>
+                    <p class="section-kicker">La carte Mastercard fournie permet de payer à l’international dans toutes les devises et de retirer du cash pendant vos déplacements.</p>
+                    <div class="benefits">
+                        <div class="benefit"><span class="dot-check">✓</span><span><strong>Paiements internationaux</strong><br>Fournisseurs, voyages, achats en ligne ou dépenses professionnelles.</span></div>
+                        <div class="benefit"><span class="dot-check">✓</span><span><strong>Compte en CHF ou USD</strong><br>Vous sélectionnez la devise la plus adaptée à votre usage.</span></div>
+                        <div class="benefit"><span class="dot-check">✓</span><span><strong>Cash disponible</strong><br>Retraits possibles sur les distributeurs compatibles.</span></div>
+                    </div>
+                    <div class="change-note"><strong>Règle simple :</strong> pas de frais de change lorsque vous payez dans la même devise que le compte sélectionné, CHF avec CHF ou USD avec USD. Dans une autre devise, une conversion est appliquée.</div>
+                </div>
+                <div class="mini-card-visual">
+                    <picture>
+                        <source media="(max-width: 760px)" srcset="assets/hero-payments-mobile.webp">
+                        <img src="assets/hero-payments.webp" alt="Carte internationale et application mobile" loading="lazy" width="1536" height="1024">
+                    </picture>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="masterclass">
+            <div class="container masterclass-card">
+                <div>
+                    <div class="eyebrow">Masterclass</div>
+                    <h2 class="section-title">Comprendre sans jargon.</h2>
+                </div>
+                <div>
+                    <p class="section-kicker" style="margin-left:0;max-width:680px;">En moins d’une heure, vous comprenez comment accéder à la solution, comment recharger votre compte et comment utiliser la carte dans vos activités quotidiennes.</p>
+                    <div class="simple-list">
+                        <div><span class="dot-check">✓</span><span>Une explication claire, pensée pour le grand public.</span></div>
+                        <div><span class="dot-check">✓</span><span>Des exemples concrets pour les paiements internationaux.</span></div>
+                        <div><span class="dot-check">✓</span><span>Un accompagnement pour ouvrir votre compte et démarrer sereinement.</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="inscription">
+            <div class="container">
+                <div class="form-card">
+                    <div class="center">
+                        <div class="eyebrow">Inscription</div>
+                        <h2 class="section-title">Accéder au webinaire</h2>
+                        <p class="section-kicker">Remplissez le formulaire. Un message WhatsApp sera préparé automatiquement avec vos informations.</p>
+                    </div>
+                    <form id="lead-form">
+                        <div class="form-grid">
+                            <div class="field"><label for="first_name">Prénom</label><input id="first_name" name="first_name" type="text" autocomplete="given-name" required></div>
+                            <div class="field"><label for="last_name">Nom</label><input id="last_name" name="last_name" type="text" autocomplete="family-name" required></div>
+                            <div class="field"><label for="country">Pays de résidence</label><input id="country" name="country" type="text" placeholder="Ex. Suisse, Côte d’Ivoire, Cameroun..." autocomplete="country-name" required></div>
+                            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+                            <div class="field"><label for="funding_mode">Mode de recharge envisagé</label><select id="funding_mode" name="funding_mode"><option value="Je ne sais pas encore">Je ne sais pas encore</option><option value="Carte bancaire">Carte bancaire</option><option value="Virement bancaire">Virement bancaire</option><option value="Crypto stable USDT / USDC">Crypto stable USDT / USDC</option><option value="Plusieurs options">Plusieurs options</option></select></div>
+                            <div class="field"><label for="partner_code">Code partenaire optionnel</label><input id="partner_code" name="partner_code" type="text" placeholder="Si quelqu’un vous a recommandé"></div>
+                        </div>
+                        <p class="form-note">Le bouton ouvrira WhatsApp avec le message déjà rempli. Vous pourrez le vérifier avant de l’envoyer.</p>
+                        <button class="btn btn-primary" type="submit">Valider mon inscription sur WhatsApp</button>
+                        <p class="privacy">Vos informations servent uniquement à organiser votre accès au webinaire et à vous recontacter.</p>
+                        <div class="success-box" id="success-box">WhatsApp va s’ouvrir avec votre message prêt à envoyer.</div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>© 2026 Drake Digital.</strong> Tous droits réservés.</p>
+            <p>Accompagnement personnalisé pour comprendre et utiliser des solutions modernes de paiements internationaux, dans le respect des normes de sécurité.</p>
+        </div>
+    </footer>
+
+    <div class="mobile-sticky" aria-hidden="false">
+        <a class="btn btn-primary" href="#inscription">Accéder au webinaire</a>
+    </div>
+
+    <script>
+        (function () {
+            const form = document.getElementById('lead-form');
+            const successBox = document.getElementById('success-box');
+            const whatsappNumber = '41792291547';
+            function val(name) {
+                const field = form.elements[name];
+                return field ? String(field.value || '').trim() : '';
+            }
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const lines = [
+                    'Bonjour Drake Digital, je souhaite accéder au webinaire Pay-Go.',
+                    '',
+                    'Mes informations :',
+                    'Prénom : ' + val('first_name'),
+                    'Nom : ' + val('last_name'),
+                    'Pays : ' + val('country'),
+                    'Email : ' + val('email'),
+                    'Mode de recharge envisagé : ' + val('funding_mode'),
+                    'Code partenaire : ' + (val('partner_code') || 'Aucun'),
+                    '',
+                    'Merci de me recontacter pour la suite.'
+                ];
+                const url = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(lines.join('\n'));
+                if (successBox) successBox.style.display = 'block';
+                window.open(url, '_blank', 'noopener,noreferrer');
+            });
+        }());
+    </script>
+</body>
+</html>
