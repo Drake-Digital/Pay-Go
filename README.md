@@ -1,15 +1,7 @@
 # Pay-Go Landing Page
 
-Page statique GitHub Pages pour Drake Digital.
+Landing page statique Drake Digital pour GitHub Pages.
 
-## Déploiement
-
-Copier tous les fichiers à la racine du dépôt `Drake-Digital/Pay-Go`, puis :
-
-```powershell
-git add -A
-git commit -m "Update Pay-Go landing page"
-git push origin main
-```
-
-GitHub Pages doit être configuré sur `main` / root.
+- Page principale : `index.html`
+- Assets : `assets/`
+- Formulaire : ouverture WhatsApp vers +41 79 229 15 47 avec message prérempli.
